@@ -6,12 +6,12 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("BurnSoft.SecureShell")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("A Implified Version of the Rensci SSH.Net nuget library to quickly connect to ssh devices and perform file transfers")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
+[assembly: AssemblyCompany("www.burnsoft.net")]
 [assembly: AssemblyProduct("BurnSoft.SecureShell")]
-[assembly: AssemblyCopyright("Copyright ©  2019")]
-[assembly: AssemblyTrademark("")]
+[assembly: AssemblyCopyright("Copyright © BurnSoft 2019")]
+[assembly: AssemblyTrademark("www.burnsoft.net")]
 [assembly: AssemblyCulture("")]
 
 // Setting ComVisible to false makes the types in this assembly not visible 
