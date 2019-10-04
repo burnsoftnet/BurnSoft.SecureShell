@@ -13,32 +13,72 @@ namespace BurnSoft.SecureShell
     /// </summary>
     public class SSHFileTransfer
     {
-        #region "Error handline"
+        #region "Error handline"        
+        /// <summary>
+        /// Gets the class location.
+        /// </summary>
+        /// <value>The class location.</value>
         private string ClassLocation => "BurnSoft.SecureShell.SSHCommand";
+        /// <summary>
+        /// Errors the message.
+        /// </summary>
+        /// <param name="sLocation">The s location.</param>
+        /// <param name="ex">The ex.</param>
+        /// <returns>System.String.</returns>
         private string ErrorMessage(string sLocation, Exception ex) => $"{ClassLocation}.{sLocation} - {ex.Message}";
+        /// <summary>
+        /// Errors the message.
+        /// </summary>
+        /// <param name="sLocation">The s location.</param>
+        /// <param name="ex">The ex.</param>
+        /// <returns>System.String.</returns>
         private string ErrorMessage(string sLocation, OverflowException ex) => $"{ClassLocation}.{sLocation} - {ex.Message}";
         #endregion
-        #region "Event Handlers"
+        #region "Event Handlers"        
+        /// <summary>
+        /// Occurs when [upload status].
+        /// </summary>
         public event EventHandler<int> UploadStatus;
+        /// <summary>
+        /// Occurs when [download status].
+        /// </summary>
         public event EventHandler<int> DownloadStatus;
+        /// <summary>
+        /// Occurs when [current file].
+        /// </summary>
         public event EventHandler<string> CurrentFile;
-
+        /// <summary>
+        /// Called when [upload status].
+        /// </summary>
+        /// <param name="e">The e.</param>
         protected virtual void OnUploadStatus(int e)
         {
             UploadStatus?.Invoke(this, e);
         }
-
+        /// <summary>
+        /// Called when [download status].
+        /// </summary>
+        /// <param name="e">The e.</param>
         protected virtual void OnDownloadStatus(int e)
         {
             DownloadStatus?.Invoke(this, e);
         }
-
+        /// <summary>
+        /// Called when [current file].
+        /// </summary>
+        /// <param name="e">The e.</param>
         protected virtual void OnCurrentFile(string e)
         {
             CurrentFile?.Invoke(this, e);
         }
         #endregion
-        #region "Helper functions"
+        #region "Helper functions"        
+        /// <summary>
+        /// Calculates the percentage.
+        /// </summary>
+        /// <param name="current">The current.</param>
+        /// <param name="size">The size.</param>
+        /// <returns>System.Int32.</returns>
         private int CalcPercentage(long current, long size)
         {
             int iAns = 0;
@@ -52,7 +92,17 @@ namespace BurnSoft.SecureShell
             }
             return iAns;
         }
-        #endregion
+        #endregion        
+        /// <summary>
+        /// Downloads the file.
+        /// </summary>
+        /// <param name="host">The host.</param>
+        /// <param name="uid">The uid.</param>
+        /// <param name="pwd">The password.</param>
+        /// <param name="remoteFileAndPath">The remote file and path.</param>
+        /// <param name="localFileAndPath">The local file and path.</param>
+        /// <param name="errOut">The error out.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         public bool DownloadFile(string host, string uid, string pwd, string remoteFileAndPath, string localFileAndPath, out string errOut)
         {
             bool bAns = false;
@@ -82,7 +132,16 @@ namespace BurnSoft.SecureShell
             }
             return bAns;
         }
-
+        /// <summary>
+        /// Downloads the directory.
+        /// </summary>
+        /// <param name="host">The host.</param>
+        /// <param name="uid">The uid.</param>
+        /// <param name="pwd">The password.</param>
+        /// <param name="remotePath">The remote path.</param>
+        /// <param name="localPath">The local path.</param>
+        /// <param name="errOut">The error out.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         public bool DownloadDirectory(string host, string uid, string pwd, string remotePath, string localPath, out string errOut)
         {
             bool bAns = false;
@@ -112,7 +171,17 @@ namespace BurnSoft.SecureShell
             }
             return bAns;
         }
-
+        /// <summary>
+        /// Uploads the file.
+        /// </summary>
+        /// <param name="host">The host.</param>
+        /// <param name="uid">The uid.</param>
+        /// <param name="pwd">The password.</param>
+        /// <param name="remotePath">The remote path.</param>
+        /// <param name="localPath">The local path.</param>
+        /// <param name="fileName">Name of the file.</param>
+        /// <param name="errOut">The error out.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         public bool UploadFile(string host, string uid, string pwd, string remotePath, string localPath, string fileName, out string errOut)
         {
             bool bAns = false;
@@ -130,7 +199,7 @@ namespace BurnSoft.SecureShell
                     {
                         client.Connect();
                         client.ErrorOccurred += (sender, e) => throw new Exception(e.Exception.Message);
-                        client.Upload += delegate (object sender, ScpUploadEventArgs e)
+                        client.Uploading += delegate (object sender, ScpUploadEventArgs e)
                         {
                             OnCurrentFile(e.Filename);
                             OnUploadStatus(CalcPercentage(e.Uploaded, e.Size));

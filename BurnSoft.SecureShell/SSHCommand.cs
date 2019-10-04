@@ -14,12 +14,36 @@ namespace BurnSoft.SecureShell
     /// </summary>
     public class SSHCommand
     {
-        #region "Error handline"
+        #region "Error handline"        
+        /// <summary>
+        /// Gets the class location.
+        /// </summary>
+        /// <value>The class location.</value>
         private static string ClassLocation => "BurnSoft.SecureShell.SSHCommand";
+        /// <summary>
+        /// Errors the message.
+        /// </summary>
+        /// <param name="sLocation">The s location.</param>
+        /// <param name="ex">The ex.</param>
+        /// <returns>System.String.</returns>
         private static string ErrorMessage(string sLocation, Exception ex) => $"{ClassLocation}.{sLocation} - {ex.Message}";
+        /// <summary>
+        /// Errors the message.
+        /// </summary>
+        /// <param name="sLocation">The s location.</param>
+        /// <param name="ex">The ex.</param>
+        /// <returns>System.String.</returns>
         private static string ErrorMessage(string sLocation,  OverflowException ex) => $"{ClassLocation}.{sLocation} - {ex.Message}";
         #endregion  
-
+        /// <summary>
+        /// Runs the command.
+        /// </summary>
+        /// <param name="host">The host.</param>
+        /// <param name="uid">The uid.</param>
+        /// <param name="pwd">The password.</param>
+        /// <param name="cmd">The command.</param>
+        /// <param name="errOut">The error out.</param>
+        /// <returns>System.String.</returns>
         public static string RunCommand(string host, string uid, string pwd, string cmd, out string errOut)
         {
             string sAns = @"";
