@@ -74,11 +74,79 @@ namespace BurnSoft.SecureShell
 
                 client.Download(remoteFileAndPath, toPath);
                 bAns = true;
-
+                client.Disconnect();
             }
             catch (Exception e)
             {
                 errOut = ErrorMessage("DownloadFile", e);
+            }
+            return bAns;
+        }
+
+        public bool DownloadDirectory(string host, string uid, string pwd, string remotePath, string localPath, out string errOut)
+        {
+            bool bAns = false;
+            errOut = @"";
+            try
+            {
+                DirectoryInfo toPath = new DirectoryInfo(localPath);
+                ConnectionInfo connectionInfo = new ConnectionInfo(host, uid, new PasswordAuthenticationMethod(uid, pwd), new PrivateKeyAuthenticationMethod(General.RsaLey));
+
+                ScpClient client = new ScpClient(connectionInfo);
+
+                client.Connect();
+
+                client.Downloading += delegate (object sender, ScpDownloadEventArgs e)
+                {
+                    OnCurrentFile(e.Filename);
+                    OnDownloadStatus(CalcPercentage(e.Downloaded, e.Size));
+                };
+
+                client.Download(remotePath, toPath);
+                bAns = true;
+                client.Disconnect();
+            }
+            catch (Exception e)
+            {
+                errOut = ErrorMessage("DownloadDirectory", e);
+            }
+            return bAns;
+        }
+
+        public bool UploadFile(string host, string uid, string pwd, string remotePath, string localPath, string fileName, out string errOut)
+        {
+            bool bAns = false;
+            errOut = @"";
+            try
+            {
+                string openFile = $"{localPath}{fileName}";
+                FileInfo fi = new FileInfo(openFile);
+                ConnectionInfo connectionInfo = new ConnectionInfo(host, uid, new PasswordAuthenticationMethod(uid, pwd), new PrivateKeyAuthenticationMethod(General.RsaLey));
+                MemoryStream outputlisting = new MemoryStream();
+
+                if (fi != null)
+                {
+                    using (var client = new ScpClient(connectionInfo))
+                    {
+                        client.Connect();
+                        client.ErrorOccurred += (sender, e) => throw new Exception(e.Exception.Message);
+                        client.Upload += delegate (object sender, ScpUploadEventArgs e)
+                        {
+                            OnCurrentFile(e.Filename);
+                            OnUploadStatus(CalcPercentage(e.Uploaded, e.Size));
+                        };
+                        string uploadTo = $"{remotePath}";
+                        client.Upload(fi, uploadTo);
+                        client.Disconnect();
+                        bAns = true;
+                    }
+                }
+                
+
+            }
+            catch (Exception ex)
+            {
+                errOut = ErrorMessage("UploadFile", ex);
             }
             return bAns;
         }
