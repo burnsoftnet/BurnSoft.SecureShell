@@ -19,14 +19,14 @@ namespace BurnSoft.SecureShell
         private static string ErrorMessage(string sLocation, Exception ex) => $"{ClassLocation}.{sLocation} - {ex.Message}";
         private static string ErrorMessage(string sLocation,  OverflowException ex) => $"{ClassLocation}.{sLocation} - {ex.Message}";
         #endregion  
-        private static string RsaLey => $"{DateTime.Now.Year}{DateTime.Now.Month}{DateTime.Now.Day}{DateTime.Now.Hour}{DateTime.Now.Minute}{DateTime.Now.Second}";
+
         public static string RunCommand(string host, string uid, string pwd, string cmd, out string errOut)
         {
             string sAns = @"";
             errOut = @"";
             try
             {
-                ConnectionInfo connectionInfo = new ConnectionInfo(host, uid, new PasswordAuthenticationMethod(uid, pwd), new PrivateKeyAuthenticationMethod(RsaLey));
+                ConnectionInfo connectionInfo = new ConnectionInfo(host, uid, new PasswordAuthenticationMethod(uid, pwd), new PrivateKeyAuthenticationMethod(General.RsaLey));
                 MemoryStream outputlisting = new MemoryStream();
 
                 using (SshClient client = new SshClient(connectionInfo))
