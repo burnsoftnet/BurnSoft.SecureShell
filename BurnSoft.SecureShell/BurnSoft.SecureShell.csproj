@@ -52,6 +52,7 @@
     <Compile Include="SSHFileTransfer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="BurnSoft.SecureShell.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
