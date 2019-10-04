@@ -14,9 +14,9 @@ namespace BurnSoft.SecureShell
     public class SSHFileTransfer
     {
         #region "Error handline"
-        private static string ClassLocation => "BurnSoft.SecureShell.SSHCommand";
-        private static string ErrorMessage(string sLocation, Exception ex) => $"{ClassLocation}.{sLocation} - {ex.Message}";
-        private static string ErrorMessage(string sLocation, OverflowException ex) => $"{ClassLocation}.{sLocation} - {ex.Message}";
+        private string ClassLocation => "BurnSoft.SecureShell.SSHCommand";
+        private string ErrorMessage(string sLocation, Exception ex) => $"{ClassLocation}.{sLocation} - {ex.Message}";
+        private string ErrorMessage(string sLocation, OverflowException ex) => $"{ClassLocation}.{sLocation} - {ex.Message}";
         #endregion
         #region "Event Handlers"
         public event EventHandler<int> UploadStatus;
@@ -53,7 +53,7 @@ namespace BurnSoft.SecureShell
             return iAns;
         }
         #endregion
-        public static bool DownloadFile(string host, string uid, string pwd, string remoteFileAndPath, string localFileAndPath, out string errOut)
+        public bool DownloadFile(string host, string uid, string pwd, string remoteFileAndPath, string localFileAndPath, out string errOut)
         {
             bool bAns = false;
             errOut = @"";
@@ -66,7 +66,14 @@ namespace BurnSoft.SecureShell
 
                 client.Connect();
 
+                client.Downloading += delegate (object sender, ScpDownloadEventArgs e)
+                {
+                    OnCurrentFile(e.Filename);
+                    OnDownloadStatus(CalcPercentage(e.Downloaded, e.Size));
+                };
 
+                client.Download(remoteFileAndPath, toPath);
+                bAns = true;
 
             }
             catch (Exception e)
