@@ -58,7 +58,7 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(SolutionName)==$(ProjectName) $(SolutionDir)postbuild.bat $(SolutionDir) $(ProjectDir) $(ConfigurationName) $(ProjectName)</PostBuildEvent>
+    <PostBuildEvent>if $(SolutionName)==$(ProjectName) $(SolutionDir)build.bat $(SolutionDir) $(ProjectDir) $(ConfigurationName) $(ProjectName)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
