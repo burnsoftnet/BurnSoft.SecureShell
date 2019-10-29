@@ -58,7 +58,11 @@
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>if $(SolutionName)==$(ProjectName) $(SolutionDir)build.bat $(SolutionDir) $(ProjectDir) $(ConfigurationName) $(ProjectName)</PostBuildEvent>
+    <PostBuildEvent>cd "$(SolutionDir)"
+SET NEWPATH=for %25I in (.) do echo %25~sI
+CD "$(ProjectDir)"
+SETNEWPD=for %25I in (.) do echo %25~sI
+if $(SolutionName)==$(ProjectName) build.bat %25NEWPATH%25\ %25SETNEWPD%25\ $(ConfigurationName) $(ProjectName)</PostBuildEvent>
   </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

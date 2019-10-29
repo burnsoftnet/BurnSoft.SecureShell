@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 14
-VisualStudioVersion = 14.0.25420.1
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.852
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BurnSoft.SecureShell", "BurnSoft.SecureShell\BurnSoft.SecureShell.csproj", "{77C1D55F-0608-4619-B40B-6DD96C57AE47}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTest_SecureShell", "UnitTest_SecureShell\UnitTest_SecureShell.csproj", "{1C5D4B66-7D44-43F5-98CB-79204CF26D9B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,8 +17,15 @@ Global
 		{77C1D55F-0608-4619-B40B-6DD96C57AE47}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{77C1D55F-0608-4619-B40B-6DD96C57AE47}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{77C1D55F-0608-4619-B40B-6DD96C57AE47}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1C5D4B66-7D44-43F5-98CB-79204CF26D9B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C5D4B66-7D44-43F5-98CB-79204CF26D9B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C5D4B66-7D44-43F5-98CB-79204CF26D9B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C5D4B66-7D44-43F5-98CB-79204CF26D9B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {57B61B00-481A-4757-8083-4F5576A1A861}
 	EndGlobalSection
 EndGlobal
