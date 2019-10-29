@@ -14,10 +14,13 @@ SET HELPFILENAME=%4
 SET DEBUG="Debug"
 SET RELEASE="Release"
 
+cd %SolutionDir%
+SET SOLPATH=%SolutionDir:"=%
+SET PROPATH=%ProjectDir:"=%
+echo "%SOLPATH%Help%HELPFILENAME%.chm"
+copy /Y "%SOLPATH%Help\%HELPFILENAME%.chm" "%PROPATH%bin\%ConfigurationName%\%HELPFILENAME%.chm"
 cd "%ProjectDir%"
-copy /Y "%SolutionDir%Help\%HELPFILENAME%.chm" "%ProjectDir%bin\%ConfigurationName%\%HELPFILENAME%.chm"
-cd "%ProjectDir%"
-del /Q %ProjectDir%*.nupkg
+del /Q %PPROPATH%*.nupkg
 
 if "%ConfigurationName%" == %DEBUG% (
 	echo "nuget Dev packing"
