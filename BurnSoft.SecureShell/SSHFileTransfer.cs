@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using Renci.SshNet;
 using Renci.SshNet.Common;
@@ -92,7 +88,7 @@ namespace BurnSoft.SecureShell
             }
             return iAns;
         }
-        #endregion        
+        #endregion
         /// <summary>
         /// Downloads the file.
         /// </summary>
@@ -103,6 +99,18 @@ namespace BurnSoft.SecureShell
         /// <param name="localFileAndPath">The local file and path.</param>
         /// <param name="errOut">The error out.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        /// <example>
+        /// SSHFileTransfer ssh = new SSHFileTransfer();<br/>
+        ///        ssh.CurrentFile += (sender, e) =><br/>
+        ///            {<br/>
+        ///                Debug.Print(e);<br/>
+        ///            };<br/>
+        ///    ssh.UploadStatus += (sender, e) =><br/>
+        ///            {<br/>
+        ///                Debug.Print(e.ToString());<br/>
+        ///            };<br/>
+        ///bool value = ssh.DownloadFile("testmachine", "root", "toor", "/var/log/syslog", "c:\test\syslog.log", out errOut);<br/>
+        /// </example>
         public bool DownloadFile(string host, string uid, string pwd, string remoteFileAndPath, string localFileAndPath, out string errOut)
         {
             bool bAns = false;
