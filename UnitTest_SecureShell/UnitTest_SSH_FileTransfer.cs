@@ -92,7 +92,7 @@ namespace UnitTest_SecureShell
             {
                 Debug.Print(e.ToString());
             };
-            bool value = ssh.UploadFile(ip, uid, pwd, uploadFile_path, uploadFile_remote_file, uploadFile_file, out errOut);
+            bool value = ssh.UploadFile(ip, uid, pwd, uploadFile_remote_path, uploadFile_path, uploadFile_file, out errOut);
             General.HasValue(value, errOut);
         }
         /// <summary>
