@@ -110,7 +110,7 @@ namespace BurnSoft.SecureShell
             try
             {
                 FileInfo toPath = new FileInfo(localFileAndPath);
-                ConnectionInfo connectionInfo = new ConnectionInfo(host,uid, new PasswordAuthenticationMethod(uid, pwd), new PrivateKeyAuthenticationMethod(General.RsaLey));
+                ConnectionInfo connectionInfo = new ConnectionInfo(host,uid, new PasswordAuthenticationMethod(uid, pwd), new PrivateKeyAuthenticationMethod(General.RsaKey));
 
                 ScpClient client = new ScpClient(connectionInfo);
 
@@ -149,7 +149,7 @@ namespace BurnSoft.SecureShell
             try
             {
                 DirectoryInfo toPath = new DirectoryInfo(localPath);
-                ConnectionInfo connectionInfo = new ConnectionInfo(host, uid, new PasswordAuthenticationMethod(uid, pwd), new PrivateKeyAuthenticationMethod(General.RsaLey));
+                ConnectionInfo connectionInfo = new ConnectionInfo(host, uid, new PasswordAuthenticationMethod(uid, pwd), new PrivateKeyAuthenticationMethod(General.RsaKey));
 
                 ScpClient client = new ScpClient(connectionInfo);
 
@@ -190,7 +190,7 @@ namespace BurnSoft.SecureShell
             {
                 string openFile = $"{localPath}{fileName}";
                 FileInfo fi = new FileInfo(openFile);
-                ConnectionInfo connectionInfo = new ConnectionInfo(host, uid, new PasswordAuthenticationMethod(uid, pwd), new PrivateKeyAuthenticationMethod(General.RsaLey));
+                ConnectionInfo connectionInfo = new ConnectionInfo(host, uid, new PasswordAuthenticationMethod(uid, pwd), new PrivateKeyAuthenticationMethod(General.RsaKey));
                 MemoryStream outputlisting = new MemoryStream();
 
                 if (fi != null)

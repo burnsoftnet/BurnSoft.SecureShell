@@ -50,7 +50,7 @@ namespace BurnSoft.SecureShell
             errOut = @"";
             try
             {
-                ConnectionInfo connectionInfo = new ConnectionInfo(host, uid, new PasswordAuthenticationMethod(uid, pwd), new PrivateKeyAuthenticationMethod(General.RsaLey));
+                ConnectionInfo connectionInfo = new ConnectionInfo(host, uid, new PasswordAuthenticationMethod(uid, pwd), new PrivateKeyAuthenticationMethod(General.RsaKey));
                 MemoryStream outputlisting = new MemoryStream();
 
                 using (SshClient client = new SshClient(connectionInfo))
@@ -88,7 +88,7 @@ namespace BurnSoft.SecureShell
                 var connectionInfo = new ConnectionInfo(host,
                     uid,
                     new PasswordAuthenticationMethod(uid, pwd),
-                    new PrivateKeyAuthenticationMethod(General.RsaLey));
+                    new PrivateKeyAuthenticationMethod(General.RsaKey));
                 using (var client = new SshClient(connectionInfo))
                 {
                     var input = new PipeStream();
