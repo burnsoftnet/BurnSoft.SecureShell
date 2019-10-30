@@ -56,6 +56,9 @@
     <None Include="BurnSoft.SecureShell.nuspec" />
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="Release Notes - BurnSoft.SecureShell.txt" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>cd "$(SolutionDir)"
