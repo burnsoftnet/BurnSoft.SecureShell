@@ -52,13 +52,13 @@
 
   <!-- Parameters used by tests at runtime -->
   <TestRunParameters>
-    <Parameter name="ip" value="10.192.168.7" />
-    <Parameter name="uid" value="ieduser" />
-    <Parameter name="pwd" value="iednet" />
+    <Parameter name="ip" value="10.211.55.7" />
+    <Parameter name="uid" value="root" />
+    <Parameter name="pwd" value="toor" />
 	<Parameter name="cmd" value="cd /var/log/; ls -l" />
 	<Parameter name="uploadFile_path" value="C:\Test\BurnSoft.SecureShell\" />
 	<Parameter name="uploadFile_file" value="test.json" />
-	<Parameter name="uploadFile_remote_path" value="/home/ieduser/" />
+	<Parameter name="uploadFile_remote_path" value="/root/Downloads/RequiredFiles/" />
 	<Parameter name="uploadFile_remote_file" value="test.log" />
 	<Parameter name="downloadFile_remote_path" value="/var/log/" />
 	<Parameter name="downloadFile_remote_file" value="syslog" />
