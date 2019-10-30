@@ -78,5 +78,32 @@ namespace BurnSoft.SecureShell
             }
             return sAns;
         }
+
+        public static bool SSHAlive(string host, string uid, string pwd, out string errOut)
+        {
+            bool bAns = false;
+            errOut = @"";
+            try
+            {
+                var connectionInfo = new ConnectionInfo(host,
+                    uid,
+                    new PasswordAuthenticationMethod(uid, pwd),
+                    new PrivateKeyAuthenticationMethod(General.RsaLey));
+                using (var client = new SshClient(connectionInfo))
+                {
+                    var input = new PipeStream();
+                    client.Connect();
+                    var shell = client.CreateShell(input, Console.OpenStandardOutput(), new MemoryStream());
+                    shell.Start();
+                    client.Disconnect();
+                }
+                bAns = true;
+            }
+            catch (Exception e)
+            {
+                errOut = ErrorMessage("SSHAlive", e);
+            }
+            return bAns;
+        }
     }
 }
