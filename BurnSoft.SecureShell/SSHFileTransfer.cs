@@ -142,6 +142,18 @@ namespace BurnSoft.SecureShell
         /// <param name="localPath">The local path.</param>
         /// <param name="errOut">The error out.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        /// <example>
+        /// SSHFileTransfer ssh = new SSHFileTransfer();<br/>
+        /// ssh.CurrentFile += (sender, e) =><br/>
+        ///    {<br/>
+        /// Debug.Print(e);<br/>
+        /// };<br/>
+        /// ssh.UploadStatus += (sender, e) =><br/>
+        /// {<br/>
+        /// Debug.Print(e.ToString());<br/>
+        /// };<br/>
+        /// bool value = ssh.DownloadDirectory("testmachine", "root", "toor", "/root/Downloads/", "C:\Test\",out errOut);
+        /// </example>
         public bool DownloadDirectory(string host, string uid, string pwd, string remotePath, string localPath, out string errOut)
         {
             bool bAns = false;
@@ -172,7 +184,7 @@ namespace BurnSoft.SecureShell
             return bAns;
         }
         /// <summary>
-        /// Uploads the file.
+        /// Uploads the file from the local machine to the remote machine..
         /// </summary>
         /// <param name="host">The host.</param>
         /// <param name="uid">The uid.</param>
@@ -182,6 +194,18 @@ namespace BurnSoft.SecureShell
         /// <param name="fileName">Name of the file.</param>
         /// <param name="errOut">The error out.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        /// <example>
+        /// SSHFileTransfer ssh = new SSHFileTransfer(); <br/>
+        /// ssh.CurrentFile += (sender, e) => <br/>
+        ///     { <br/>
+        /// Debug.Print(e); <br/>
+        /// }; <br/>
+        /// ssh.UploadStatus += (sender, e) => <br/>
+        ///{ <br/>
+        ///    Debug.Print(e.ToString()); <br/>
+        ///}; <br/>
+        ///bool value = ssh.UploadFile("testmachine", "root", "toor", "/root/Downloads/", "C:\Test\", "Test.json", out errOut);
+        /// </example>
         public bool UploadFile(string host, string uid, string pwd, string remotePath, string localPath, string fileName, out string errOut)
         {
             bool bAns = false;
