@@ -9,7 +9,7 @@ namespace BurnSoft.SecureShell
     /// </summary>
     public class SSHFileTransfer
     {
-        #region "Error handline"        
+        #region "Error handling"        
         /// <summary>
         /// Gets the class location.
         /// </summary>

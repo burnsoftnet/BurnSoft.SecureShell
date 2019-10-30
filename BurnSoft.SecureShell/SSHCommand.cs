@@ -15,7 +15,7 @@ namespace BurnSoft.SecureShell
     /// </summary>
     public class SSHCommand
     {
-        #region "Error handline"        
+        #region "Error handling"        
         /// <summary>
         /// Gets the class location.
         /// </summary>
