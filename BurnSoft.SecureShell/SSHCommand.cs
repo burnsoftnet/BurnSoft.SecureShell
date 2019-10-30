@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Renci.SshNet;
 using Renci.SshNet.Common;
 using System.IO;
+using System.Net.NetworkInformation;
 
 namespace BurnSoft.SecureShell
 {
@@ -109,6 +110,47 @@ namespace BurnSoft.SecureShell
             catch (Exception e)
             {
                 errOut = ErrorMessage("SSHAlive", e);
+            }
+            return bAns;
+        }
+        /// <summary>
+        /// Devices the is up.
+        /// </summary>
+        /// <param name="host">The host.</param>
+        /// <param name="errOut">The error out.</param>
+        /// <param name="timeout">The timeout.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        /// <exception cref="Exception">No Host or IP Listed!</exception>
+        public static bool DeviceIsUp(string host, out string errOut, int timeout = 5000)
+        {
+            bool bAns = false;
+            errOut = @"";
+            try
+            {
+                if (host.Equals(null)) throw new Exception("No Host or IP Listed!");
+                Ping instance = new Ping();
+                PingReply results;
+
+                results = instance.Send(host, timeout);
+                switch (results.Status)
+                {
+                    case IPStatus.Success:
+                        bAns = true;
+                        break;
+                    case IPStatus.TtlExpired:
+                        errOut = "TTL Expried in transit";
+                        break;
+                    case IPStatus.BadDestination:
+                        errOut = "Bad Destination";
+                        break;
+                    default:
+                        errOut = "Request timed out";
+                        break;
+                }
+            }
+            catch (Exception e)
+            {
+                errOut = ErrorMessage("DeviceIsUp", e);
             }
             return bAns;
         }
