@@ -51,5 +51,14 @@ namespace UnitTest_SecureShell
             string value = SSHCommand.RunCommand(ip, uid, pwd, cmd, out errOut);
             General.HasValue(value, errOut);
         }
+        /// <summary>
+        /// Defines the test method TestMethod_SSHAlive.
+        /// </summary>
+        [TestMethod]
+        public void TestMethod_SSHAlive()
+        {
+            bool value = SSHCommand.SSHAlive(ip, uid, pwd, out errOut);
+            General.HasValue(value, errOut);
+        }
     }
 }
