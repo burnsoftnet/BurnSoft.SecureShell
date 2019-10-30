@@ -78,7 +78,14 @@ namespace BurnSoft.SecureShell
             }
             return sAns;
         }
-
+        /// <summary>
+        /// SSHs the alive.
+        /// </summary>
+        /// <param name="host">The host.</param>
+        /// <param name="uid">The uid.</param>
+        /// <param name="pwd">The password.</param>
+        /// <param name="errOut">The error out.</param>
+        /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         public static bool SSHAlive(string host, string uid, string pwd, out string errOut)
         {
             bool bAns = false;
