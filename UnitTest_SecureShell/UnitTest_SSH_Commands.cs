@@ -60,5 +60,14 @@ namespace UnitTest_SecureShell
             bool value = SSHCommand.SSHAlive(ip, uid, pwd, out errOut);
             General.HasValue(value, errOut);
         }
+        /// <summary>
+        /// Defines the test method TestMethod_DeviceIsUp.
+        /// </summary>
+        [TestMethod]
+        public void TestMethod_DeviceIsUp()
+        {
+            bool value = SSHCommand.DeviceIsUp(ip, out errOut);
+            General.HasValue(value, errOut);
+        }
     }
 }
