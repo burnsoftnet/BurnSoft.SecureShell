@@ -35,7 +35,7 @@ namespace BurnSoft.SecureShell
         /// <param name="ex">The ex.</param>
         /// <returns>System.String.</returns>
         private static string ErrorMessage(string sLocation,  OverflowException ex) => $"{ClassLocation}.{sLocation} - {ex.Message}";
-        #endregion  
+        #endregion
         /// <summary>
         /// Runs the command.
         /// </summary>
@@ -45,6 +45,34 @@ namespace BurnSoft.SecureShell
         /// <param name="cmd">The command.</param>
         /// <param name="errOut">The error out.</param>
         /// <returns>System.String.</returns>
+        /// <example>
+        /// string value = SSHCommand.RunCommand("TestMachine", "root", "toor","cd /var/log/; ls -l", out errOut); <br/>
+        /// <br/>
+        /// <br/>
+        /// <b>Results:</b><br/>
+        /// -rw-r--r-- 1 root              root        106931 Jul 24 15:04 alternatives.log<br/>
+        /// drwxr-x--- 2 root adm           4096 Feb 20  2019 apache2<br/>
+        ///drwxr-xr-x 2 root root          4096 Jul 24 15:00 apt<br/>
+        ///-rw-r----- 1 root adm          74601 Oct 30 08:01 auth.log<br/>
+        ///-rw------- 1 root root         49237 Oct 30 07:32 boot.log<br/>
+        ///-rw-r--r-- 1 root root             0 Jan 30  2019 bootstrap.log<br/>
+        ///-rw-rw---- 1 root utmp           768 Oct 30 07:45 btmp<br/>
+        ///drwxr-xr-x 2 root root          4096 Apr 19  2018 chkrootkit<br/>
+        ///-rw-r----- 1 root adm        1301653 Oct 30 08:01 daemon.log<br/>
+        ///-rw-r----- 1 root adm         462421 Oct 30 07:48 debug<br/>
+        ///-rw-r--r-- 1 root root       1124294 Jul 24 15:05 dpkg.log<br/>
+        ///drwxr-xr-x 2 dradis dradis        4096 Feb 20  2019 dradis<br/>
+        ///drwxr-s--- 2 Debian-exim adm           4096 Feb 20  2019 exim4<br/>
+        ///-rw-r--r-- 1 root root          4352 Jul 24 15:04 faillog<br/>
+        ///-rw-r--r-- 1 root root          6155 Jul 24 15:05 fontconfig.log<br/>
+        ///drwx--x--x 2 root Debian-gdm    4096 Sep 26  2018 gdm3<br/>
+        ///drwx------ 3 inetsim inetsim       4096 Feb 20  2019 inetsim<br/>
+        ///drwxr-xr-x 3 root root          4096 Feb 20  2019 installer<br/>
+        ///-rw-r----- 1 root adm        1193710 Oct 30 07:43 kern.log<br/>
+        ///-rw-rw-r-- 1 root utmp         39712 Oct 30 08:01 lastlog<br/>
+        ///-rw-r--r-- 1 root root          1944 Oct 30 07:32 macchanger.log<br/>
+        ///-rw-r----- 1 root adm        6531487 Oct 30 07:59 messages<br/>
+        /// </example>
         public static string RunCommand(string host, string uid, string pwd, string cmd, out string errOut)
         {
             string sAns = @"";
@@ -87,6 +115,9 @@ namespace BurnSoft.SecureShell
         /// <param name="pwd">The password.</param>
         /// <param name="errOut">The error out.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
+        /// <example>
+        /// bool value = SSHCommand.SSHAlive("TestMachine", "root", "toor", out errOut);
+        /// </example>
         public static bool SSHAlive(string host, string uid, string pwd, out string errOut)
         {
             bool bAns = false;
@@ -121,6 +152,9 @@ namespace BurnSoft.SecureShell
         /// <param name="timeout">The timeout.</param>
         /// <returns><c>true</c> if XXXX, <c>false</c> otherwise.</returns>
         /// <exception cref="Exception">No Host or IP Listed!</exception>
+        /// <example>
+        /// bool value = SSHCommand.DeviceIsUp("TestMachine", out errOut);
+        /// </example>
         public static bool DeviceIsUp(string host, out string errOut, int timeout = 5000)
         {
             bool bAns = false;
