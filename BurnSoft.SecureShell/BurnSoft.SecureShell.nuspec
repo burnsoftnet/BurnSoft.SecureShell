@@ -6,15 +6,18 @@
     <title>$title$</title>
     <authors>$author$</authors>
     <owners>$author$</owners>
-    <projectUrl>\\bsnas2\BurnSoft_Git\microsoft\classes\BurnSoft.SecureShell.git</projectUrl>
+    <projectUrl>https://github.com/burnsoftnet/BurnSoft.SecureShell.git</projectUrl>
+    <repository type="git" url="https://github.com/burnsoftnet/BurnSoft.SecureShell" />
     <iconUrl>https://avatars0.githubusercontent.com/u/24593581?s=460</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <icon>images\icon.png</icon>
     <description>$description$</description>
-    <releaseNotes>initial release</releaseNotes>
+    <releaseNotes>Initial Release of BurnSoft.SecureShell Library</releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>burnsoft SSH SCP secureshell</tags>
   </metadata>
   <files>
-    <file src="./bin/$configuration$/BurnSoft.SecureShell.chm" target="content\BurnSoft.SecureShell.chm" />
+    <file src="./bin/$configuration$/$id$.chm" target="content\$id$" />
+    <file src="icon.png" target="images\" />
   </files>
 </package>
