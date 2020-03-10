@@ -17,7 +17,7 @@
     <tags>burnsoft SSH SCP secureshell</tags>
   </metadata>
   <files>
-    <file src="./bin/$configuration$/$id$.chm" target="content\$id$" />
+    <file src="./bin/$configuration$/$id$.chm" target="content\" />
     <file src="icon.png" target="images\" />
   </files>
 </package>
