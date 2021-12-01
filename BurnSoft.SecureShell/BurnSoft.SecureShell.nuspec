@@ -10,6 +10,7 @@
     <repository type="git" url="https://github.com/burnsoftnet/BurnSoft.SecureShell" />
     <iconUrl>https://avatars0.githubusercontent.com/u/24593581?s=460</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
     <icon>images\icon.png</icon>
     <description>$description$</description>
     <releaseNotes>Initial Release of BurnSoft.SecureShell Library</releaseNotes>
