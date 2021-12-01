@@ -6,6 +6,9 @@ REM ******************************************************
 REM ******************************************************
 REM USE Build Script below for Solution
 REM $(SolutionDir)postbuild.bat $(SolutionDir) $(ProjectDir) $(ConfigurationName) $(ProjectName)
+REM
+REM USE Build Script below for Solution push to github and or nuget
+REM $(SolutionDir)postbuild.bat $(SolutionDir) $(ProjectDir) $(ConfigurationName) $(ProjectName) -public
 REM 
 REM USE Build Script below for Project Only
 REM $(ProjectDir)postbuild.bat $(SolutionDir) $(ProjectDir) $(ConfigurationName) $(ProjectName)
