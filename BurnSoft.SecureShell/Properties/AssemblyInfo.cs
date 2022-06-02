@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 [assembly: AssemblyTitle("BurnSoft.SecureShell")]
-[assembly: AssemblyDescription("A Implified Version of the Rensci SSH.Net nuget library to quickly connect to ssh devices and perform file transfers")]
+[assembly: AssemblyDescription("A simplified Version of the Rensci SSH.Net nuget library to quickly connect to ssh devices and perform file transfers")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("www.burnsoft.net")]
 [assembly: AssemblyProduct("BurnSoft.SecureShell")]

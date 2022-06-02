@@ -4,15 +4,15 @@
     <id>$id$</id>
     <version>1.0.0.2</version>
     <title>$title$</title>
-    <authors>$author$</authors>
-    <owners>$author$</owners>
+    <authors>burnsoftnet</authors>
+    <owners>burnsoftnet</owners>
     <projectUrl>https://github.com/burnsoftnet/BurnSoft.SecureShell.git</projectUrl>
     <repository type="git" url="https://github.com/burnsoftnet/BurnSoft.SecureShell" />
     <iconUrl>https://avatars0.githubusercontent.com/u/24593581?s=460</iconUrl>
     <requireLicenseAcceptance>false</requireLicenseAcceptance>
     <license type="expression">MIT</license>
     <icon>images\icon.png</icon>
-    <description>$description$</description>
+    <description>A simplified Version of the Rensci SSH.Net nuget library to quickly connect to ssh devices and perform file transfers</description>
     <releaseNotes>Initial Release of BurnSoft.SecureShell Library</releaseNotes>
     <copyright>$copyright$</copyright>
     <tags>burnsoft SSH SCP secureshell</tags>
