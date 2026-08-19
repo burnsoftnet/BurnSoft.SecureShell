@@ -63,8 +63,8 @@ namespace UnitTest_SecureShell
         /// <summary>
         /// Defines the test method TestMethod_DeviceIsUp.
         /// </summary>
-        [TestMethod]
-        public void TestMethod_DeviceIsUp()
+        [TestMethod, TestCategory("Connectivity Test")]
+        public void DeviceIsUp()
         {
             bool value = SSHCommand.DeviceIsUp(ip, out errOut);
             General.HasValue(value, errOut);
