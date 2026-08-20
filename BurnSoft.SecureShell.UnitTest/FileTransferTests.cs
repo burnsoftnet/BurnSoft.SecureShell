@@ -1,12 +1,10 @@
-﻿using System;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using BurnSoft.SecureShell;
+﻿using BurnSoft.SecureShell.UnitTest.Settings;
+using NUnit.Framework;
 using System.Diagnostics;
 
-namespace UnitTest_SecureShell
+namespace BurnSoft.SecureShell.UnitTest
 {
-    [TestClass]
-    public class UnitTest_SSH_FileTransfer
+    public class FileTransferTests
     {
         /// <summary>
         /// The error out
@@ -61,63 +59,80 @@ namespace UnitTest_SecureShell
         /// The getfilefrom host
         /// </summary>
         private string getfilefromHost;
-        [TestInitialize]
-        public void Init()
+        [SetUp]
+        public void Setup()
         {
-            ip = TestContext.Properties["ip"].ToString();
-            uid = TestContext.Properties["uid"].ToString();
-            pwd = TestContext.Properties["pwd"].ToString();
-            cmd = TestContext.Properties["cmd"].ToString();
-            uploadFile_path = TestContext.Properties["uploadFile_path"].ToString();
-            uploadFile_file = TestContext.Properties["uploadFile_file"].ToString();
-            uploadFile_remote_path = TestContext.Properties["uploadFile_remote_path"].ToString();
-            uploadFile_remote_file = TestContext.Properties["uploadFile_remote_file"].ToString();
-            downloadFile_remote_path = TestContext.Properties["downloadFile_remote_path"].ToString();
-            downloadFile_remote_file = TestContext.Properties["downloadFile_remote_file"].ToString();
-            getfilefromHost = TestContext.Properties["getfilefromHost"].ToString();
+            ip = GeneralSettings.IpAddress;
+            uid = GeneralSettings.Uid;
+            pwd = GeneralSettings.Pwd;
+            cmd = GeneralSettings.Cmd;
+            uploadFile_path = GeneralSettings.UploadFile_path;
+            uploadFile_file = GeneralSettings.uploadFile_file;
+            uploadFile_remote_path = GeneralSettings.uploadFile_remote_path;
+            uploadFile_remote_file = GeneralSettings.uploadFile_remote_file;
+            downloadFile_remote_path = GeneralSettings.downloadFile_remote_path;
+            downloadFile_remote_file = GeneralSettings.downloadFile_remote_file;
+            getfilefromHost = GeneralSettings.getfilefromHost;
         }
 
-        /// <summary>
-        /// Tests the method static upload file to host.
-        /// </summary>
-        [TestMethod]
-        public void TestMethod_UploadFile()
+        [Test, Category("File Transfers - Upload")]
+        public void UploadFileTest()
         {
             SSHFileTransfer ssh = new SSHFileTransfer();
-            ssh.CurrentFile += (sender, e) =>
+            ssh.CurrentFile += (sender, ee) =>
             {
-                Debug.Print(e);
+                TestContext.WriteLine($"CurrentFile: {ee}");
             };
-            ssh.UploadStatus += (sender, e) =>
+            ssh.UploadStatus += (sender, ee) =>
             {
-                Debug.Print(e.ToString());
+                TestContext.WriteLine($"UploadStatus: {ee}");
             };
+
+            ssh.DebugInformation += (ss, ee) => {
+                TestContext.WriteLine($"DEBUG: {ee}");
+            };
+
             bool value = ssh.UploadFile(ip, uid, pwd, uploadFile_remote_path, uploadFile_path, uploadFile_file, out errOut);
-            General.HasValue(value, errOut);
+            if(value)
+            {
+                TestContext.WriteLine($"Transfer to {ip} was successful!");
+            } else
+            {
+                TestContext.WriteLine(errOut);
+                Assert.Fail();
+            }
         }
-        /// <summary>
-        /// Tests the method static download file from host.
-        /// </summary>
-        [TestMethod]
-        public void TestMethod_DownloadFile()
+
+        [Test, Category("File Transfers - Download")]
+        public void DownloadFileTest()
         {
             SSHFileTransfer ssh = new SSHFileTransfer();
-            ssh.CurrentFile += (sender, e) =>
+            ssh.CurrentFile += (sender, ee) =>
             {
-                Debug.Print(e);
+                TestContext.WriteLine($"CurrentFile: {ee}");
             };
-            ssh.UploadStatus += (sender, e) =>
+            ssh.UploadStatus += (sender, ee) =>
             {
-                Debug.Print(e.ToString());
+                TestContext.WriteLine($"UploadStatus: {ee}");
+            };
+
+            ssh.DebugInformation += (ss, ee) => {
+                TestContext.WriteLine($"DEBUG: {ee}");
             };
             bool value = ssh.DownloadFile(ip, uid, pwd, $"{downloadFile_remote_path}{downloadFile_remote_file}", $"{uploadFile_path}{downloadFile_remote_file}", out errOut);
-            General.HasValue(value, errOut);
+            if (value)
+            {
+                TestContext.WriteLine($"Transfer from {ip} was successful!");
+            }
+            else
+            {
+                TestContext.WriteLine(errOut);
+                Assert.Fail();
+            }
         }
-        /// <summary>
-        /// Tests the method static download directory from host.
-        /// </summary>
-        [TestMethod]
-        public void TestMethod_DownloadDirectory()
+
+        [Test, Category("File Transfers - Download")]
+        public void DownloadDirectoryeTest()
         {
             SSHFileTransfer ssh = new SSHFileTransfer();
             ssh.CurrentFile += (sender, e) =>
@@ -130,7 +145,15 @@ namespace UnitTest_SecureShell
             };
             bool value = ssh.DownloadDirectory(ip, uid, pwd, downloadFile_remote_path, uploadFile_path,
                 out errOut);
-            General.HasValue(value, errOut);
+            if (value)
+            {
+                TestContext.WriteLine($"Transfer from {ip} was successful!");
+            }
+            else
+            {
+                TestContext.WriteLine(errOut);
+                Assert.Fail();
+            }
         }
     }
 }
