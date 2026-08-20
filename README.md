@@ -10,7 +10,9 @@ The **SecureShell** class is a generic class using the Renci SshNet ( SSH.NET.20
 
 Addition documentation in a CHM Help file can be found at:
 
-https://github.com/burnsoftnet/Documentation/blob/master/BurnSoft.SecureShell.chm
+* https://github.com/burnsoftnet/Documentation/blob/master/BurnSoft.SecureShell.chm
+* [Developer Notes](docs/DeveloperNotes.md)
+* [API Docs](docs.READMD.md)
 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JSW8XEMQVH4BE)]
 

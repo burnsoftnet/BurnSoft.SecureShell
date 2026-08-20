@@ -92,6 +92,9 @@
     <Compile Include="SSHFileTransfer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="..\docs\DeveloperNotes.md">
+      <Link>DeveloperNotes.md</Link>
+    </None>
     <None Include="..\README.md">
       <Link>README.md</Link>
     </None>
