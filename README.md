@@ -15,3 +15,15 @@ Addition documentation in a CHM Help file can be found at:
 https://github.com/burnsoftnet/Documentation/blob/master/BurnSoft.SecureShell.chm
 
 [![Donate](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=JSW8XEMQVH4BE)]
+
+## Change Log
+
+### v1.0.0.3
+
+* Updated libraries due to Security Bug
+* Updated Unit Tests
+* Updated to use .Net Framework 4.8.1 instead of 4.8
+
+### v1.0.0.2
+
+* Initial Release
