@@ -44,6 +44,18 @@ namespace BurnSoft.SecureShell
         /// </summary>
         public event EventHandler<string> CurrentFile;
         /// <summary>
+        /// Occurs when [debug information].
+        /// </summary>
+        public event EventHandler<string> DebugInformation;
+        /// <summary>
+        /// Sends the debug.
+        /// </summary>
+        /// <param name="value">The value.</param>
+        protected virtual void SendDebug(string value)
+        {
+            DebugInformation?.Invoke(this, value);
+        }
+        /// <summary>
         /// Called when [upload status].
         /// </summary>
         /// <param name="e">The e.</param>
@@ -221,12 +233,14 @@ namespace BurnSoft.SecureShell
             try
             {
                 string openFile = $"{localPath}{fileName}";
+                SendDebug($"Converting {openFile} to FileInfo");
                 FileInfo fi = new FileInfo(openFile);
                 ConnectionInfo connectionInfo = new ConnectionInfo(host, uid, new PasswordAuthenticationMethod(uid, pwd), new PrivateKeyAuthenticationMethod(General.RsaKey));
                 MemoryStream outputlisting = new MemoryStream();
 
                 if (fi != null)
                 {
+                    SendDebug($"Connecting to Host {host}");
                     using (var client = new ScpClient(connectionInfo))
                     {
                         client.Connect();
@@ -236,14 +250,14 @@ namespace BurnSoft.SecureShell
                             OnCurrentFile(e.Filename);
                             OnUploadStatus(CalcPercentage(e.Uploaded, e.Size));
                         };
-                        string uploadTo = $"{remotePath}";
+                        string uploadTo = $"{remotePath}/{fileName}";
+                        SendDebug($"Attempting to upload to {uploadTo}");
                         client.Upload(fi, uploadTo);
+                        SendDebug($"File was uploaded to {uploadTo}, going to discconect from host.");
                         client.Disconnect();
                         bAns = true;
                     }
                 }
-                
-
             }
             catch (Exception ex)
             {

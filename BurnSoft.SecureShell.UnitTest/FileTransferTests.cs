@@ -79,14 +79,19 @@ namespace BurnSoft.SecureShell.UnitTest
         public void UploadFileTest()
         {
             SSHFileTransfer ssh = new SSHFileTransfer();
-            ssh.CurrentFile += (sender, e) =>
+            ssh.CurrentFile += (sender, ee) =>
             {
-                Debug.Print(e);
+                TestContext.WriteLine($"CurrentFile: {ee}");
             };
-            ssh.UploadStatus += (sender, e) =>
+            ssh.UploadStatus += (sender, ee) =>
             {
-                Debug.Print(e.ToString());
+                TestContext.WriteLine($"UploadStatus: {ee}");
             };
+
+            ssh.DebugInformation += (ss, ee) => {
+                TestContext.WriteLine($"DEBUG: {ee}");
+            };
+
             bool value = ssh.UploadFile(ip, uid, pwd, uploadFile_remote_path, uploadFile_path, uploadFile_file, out errOut);
             if(value)
             {
@@ -102,13 +107,17 @@ namespace BurnSoft.SecureShell.UnitTest
         public void DownloadFileTest()
         {
             SSHFileTransfer ssh = new SSHFileTransfer();
-            ssh.CurrentFile += (sender, e) =>
+            ssh.CurrentFile += (sender, ee) =>
             {
-                Debug.Print(e);
+                TestContext.WriteLine($"CurrentFile: {ee}");
             };
-            ssh.UploadStatus += (sender, e) =>
+            ssh.UploadStatus += (sender, ee) =>
             {
-                Debug.Print(e.ToString());
+                TestContext.WriteLine($"UploadStatus: {ee}");
+            };
+
+            ssh.DebugInformation += (ss, ee) => {
+                TestContext.WriteLine($"DEBUG: {ee}");
             };
             bool value = ssh.DownloadFile(ip, uid, pwd, $"{downloadFile_remote_path}{downloadFile_remote_file}", $"{uploadFile_path}{downloadFile_remote_file}", out errOut);
             if (value)
